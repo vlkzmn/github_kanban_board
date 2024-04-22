@@ -1,0 +1,12 @@
+.column-container {
+  box-sizing: border-box;
+  width: 32%;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #e4e4e4;
+  transition: background-color 0.2s;
+}
+
+.dragging-over {
+  background-color: #c4c4c4;
+}
