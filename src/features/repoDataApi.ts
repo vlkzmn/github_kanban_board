@@ -16,6 +16,8 @@ const transformRepoDataResponse = (data: RepoDataResponse) => ({
 const transformIssuesResponse = (data: IssueResponse[]) => {
   const tasks: Record<string, Task> = {};
   const openedTasks: string[] = [];
+  const inProgressTasks: string[] = [];
+  const closedTasks: string[] = [];
 
   data.forEach((item) => {
     const taskId = item.number.toString();
@@ -25,9 +27,15 @@ const transformIssuesResponse = (data: IssueResponse[]) => {
       opened: item.created_at,
       admin: item.user.login,
       comments: item.comments,
-      state: item.state,
     };
-    openedTasks.push(taskId);
+
+    if (item.state === 'closed') {
+      closedTasks.push(taskId);
+    } else if (item.assignee !== null) {
+      inProgressTasks.push(taskId);
+    } else {
+      openedTasks.push(taskId);
+    }
   });
 
   return {
@@ -41,12 +49,12 @@ const transformIssuesResponse = (data: IssueResponse[]) => {
       in_progress: {
         id: 'in_progress',
         title: 'In Progress',
-        taskIds: [],
+        taskIds: inProgressTasks,
       },
       done: {
         id: 'done',
         title: 'Done',
-        taskIds: [],
+        taskIds: closedTasks,
       },
     },
     columnOrder: ['to_do', 'in_progress', 'done'],
@@ -64,7 +72,7 @@ export const repoDataApi = createApi({
       transformResponse: transformRepoDataResponse,
     }),
     getIssues: build.query<DataIssues, string>({
-      query: (repoName) => `${repoName}/issues`,
+      query: (repoName) => `${repoName}/issues?state=all`,
       transformResponse: transformIssuesResponse,
     }),
   }),

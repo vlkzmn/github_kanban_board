@@ -4,7 +4,6 @@ export interface Task {
   opened: string;
   admin: string;
   comments: number;
-  state: string;
 }
 
 export interface Column {

@@ -7,4 +7,5 @@ export interface IssueResponse {
   };
   comments: number;
   state: string;
+  assignee: null | object;
 }
