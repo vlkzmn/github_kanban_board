@@ -38,7 +38,6 @@ export const issuesForTestUpdate: DataIssues = {
       id: '28748',
       title: '[Flight] Deduplicate suspended elements',
       opened: '2024-04-04T16:02:44Z',
-      state: 'open',
       admin: 'unstubbable',
       comments: 1,
     },
@@ -46,7 +45,6 @@ export const issuesForTestUpdate: DataIssues = {
       id: '28749',
       title: 'remove react-test-renderer flags',
       opened: '2024-04-04T20:42:24Z',
-      state: 'open',
       admin: 'noahlemen',
       comments: 0,
     },
@@ -92,6 +90,7 @@ export const issuesDataResponseForTest: IssueResponse[] = [
     },
     comments: 1,
     state: 'open',
+    assignee: null,
   },
   {
     number: 28749,
@@ -102,6 +101,7 @@ export const issuesDataResponseForTest: IssueResponse[] = [
     },
     comments: 0,
     state: 'open',
+    assignee: null,
   },
   {
     number: 28750,
@@ -112,5 +112,6 @@ export const issuesDataResponseForTest: IssueResponse[] = [
     },
     comments: 1,
     state: 'open',
+    assignee: null,
   },
 ];
